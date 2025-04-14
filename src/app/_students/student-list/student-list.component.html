@@ -1,0 +1,40 @@
+<!-- <a routerLink="/student/Add" (click)="addStudent()" class="btn btn-primary">Add Student</a> -->
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>
+                <!-- <a class="btn btn-primary"  (click)="onDetailsClick(student)">Details</a> &nbsp; -->
+                 <a [routerLink]= "['/students/Details',student.id]" class="btn btn-primary">Details</a> &nbsp;
+                <!-- <button class="btn btn-warning" (click)="onEditClick(student)">Edit</button> -->
+                <a [routerLink]= "['/students/Edit',student.id]" (click)="onEditClick(student)" class="btn btn-info">Edit</a> &nbsp;
+
+                <button (click)="deleteStudent(student.id)" class="btn btn-danger">Delete</button> 
+            </td>
+           
+        </tr>
+    </tbody>
+</table>
+
+<router-outlet></router-outlet>
+
+<!-- <div *ngIf="showDetails">
+    <app-student-details [std]="selectedStudent"></app-student-details>
+  </div> -->
+
+  <div *ngIf="showEdit">
+    <app-student-edit  [estd]="editstudent"
+    (onstudentUpdated)="updateStudent($event)"
+    ></app-student-edit>
+  </div>

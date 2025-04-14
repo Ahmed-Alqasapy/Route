@@ -1,0 +1,96 @@
+
+   <div class="container p-4">
+    <h2 class="mb-4 text-primary">Department Manager</h2>
+  
+    <div class="row g-3 mb-3">
+      <div class="col-md-4">
+        <input
+          [(ngModel)]="newDepartment.name"
+          placeholder="Department Name"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <input
+          [(ngModel)]="newDepartment.id"
+          placeholder="Department ID"
+          type="number"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <input
+          [(ngModel)]="newDepartment.description"
+          placeholder="Description"
+          class="form-control"
+        />
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <button
+        (click)="saveDepartment()"
+        class="btn btn-success me-2"
+      >
+        {{ isEditMode ? "Update" : "Add" }}
+      </button>
+      <button
+        (click)="resetForm()"
+        *ngIf="isEditMode"
+        class="btn btn-secondary"
+      >
+        Cancel
+      </button>
+    </div>
+  
+    <hr />
+  
+    <table class="table table-bordered table-striped shadow-sm">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dept of departments">
+          <td>{{ dept.id }}</td>
+          <td>{{ dept.name }}</td>
+          <td>
+            <!-- <button
+              (click)="editDepartment(dept)"
+              class="btn btn-primary btn-sm me-2"
+            >
+              Edit
+            </button> -->
+            <a [routerLink]="['/department/Edit', dept.id]"  (click)="editDepartment(dept)" class="btn btn-info btn-sm">Edit</a>
+
+            <button
+              (click)="deleteDepartment(dept)"
+              class="btn btn-danger btn-sm me-2"
+            >
+              Delete
+            </button>
+            <!-- <button
+              (click)="showDepartmentDetails(dept.id)"
+              class="btn btn-info btn-sm"
+            >
+              Details
+            </button> -->
+            <a [routerLink]="['/department/Details', dept.id]"  (click)="showDepartmentDetails(dept.id)" class="btn btn-info btn-sm">Details</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Department Details Section -->
+    <div *ngIf="selectedDepartment" class="alert alert-info mt-4">
+      <h5 class="mb-2">Department Details</h5>
+      <p><strong>ID:</strong> {{ selectedDepartment.id }}</p>
+      <p><strong>Name:</strong> {{ selectedDepartment.name }}</p>
+      <p><strong>Description:</strong> {{ selectedDepartment.description }}</p>
+      <button class="btn btn-sm btn-outline-secondary" (click)="selectedDepartment = null">Close</button>
+    </div>
+  </div>
+  
