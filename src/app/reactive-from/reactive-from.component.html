@@ -1,0 +1,68 @@
+
+    <form [formGroup]="stdForm"  (submit)="onSubmit()">
+
+        @if(fname.touched && fname.invalid)
+        {
+           @if(fname.errors?.['required']){
+            <span>First Name Is Required</span>
+           }
+           @if(fname.errors?.['minlength']){
+                <span>minmum 5 characters</span>
+           }
+        }
+        <input type="text" formControlName="fname"> <br><br>
+        @if(lname.touched && lname.invalid)
+        {
+           @if(lname.errors?.['required']){
+            <span>Last Name Is Required</span>
+           }
+           @if(lname.errors?.['minlength']){
+                <span>minmum 5 characters</span>
+           }
+        }
+        <input type="text" formControlName="lname"> <br><br>
+        @if(email.touched && email.invalid)
+        {
+           @if(email.errors?.['required']){
+            <span>Email Is Required</span>
+           }
+           @if(email.errors?.['pattern']){
+                <span>Enter a valid email</span>
+           }
+        }
+        <input type="email" formControlName="email"> <br><br>
+        @if(age.touched && age.invalid)
+        {
+           @if(age.errors?.['required']){
+            <span>Age Is Required</span>
+           }
+          @if(age.value<20){
+            <span>Min Age is 20</span>
+
+          }
+          @if(age.value>40){
+            <span>Max Age is 40</span>
+
+          }
+        }
+        <input type="number" formControlName="age"> <br><br>
+
+
+        
+                <div formArrayName="address">
+
+                        <button (click)="addAddress()">Adding Adress</button>
+                        <br>
+                        @for(item of address.controls;track $index ; let i = $index){
+                            <input [formControlName]="i"><br>
+                        }
+
+                </div>
+
+
+
+
+        <input type="submit" value="Add">
+    </form>
+
+    <button (click)="UpdateFname()">Update Name</button>

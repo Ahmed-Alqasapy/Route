@@ -13,6 +13,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class StudentListComponent {
 
+  // private baseUrl = 'https://localhost:7069/api/student';
+
   students:Student[] = [
 
     { id: 1, name: 'Ahmed', age: 22},

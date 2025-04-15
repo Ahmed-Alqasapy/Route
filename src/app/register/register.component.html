@@ -1,0 +1,32 @@
+<form #stdForm="ngForm" (ngSubmit)="onSubmit(stdage)">
+    <input type="text" #stdfname="ngModel" ngModel="" name="Fname" placeholder="Enter Your First Name" minlength="5"  required>
+    <span *ngIf="stdfname.invalid && stdfname.touched">
+        <small *ngIf="stdfname.errors?.['required']">FirstName required</small>
+        <small *ngIf="stdfname.errors?.['minlength']">minlength= {{stdfname.errors?.['requiredLength']}}</small>
+    </span>
+    <br>
+    <br>
+    <input type="text" #stdlname="ngModel" ngModel="" name="Lname" placeholder="Enter Your last Name" minlength="5"  required>
+    <span *ngIf="stdlname.invalid && stdlname.touched">
+        <small *ngIf="stdlname.errors?.['required']">LastName is required</small>
+        <small *ngIf="stdlname.errors?.['minlength']">minlength= {{stdlname.errors?.['requiredLength']}}</small>
+    </span>
+    <br>
+    <br>
+    <input type="email" #stdemail="ngModel" ngModel="" name="email" placeholder="Enter Your Email" required>
+    <span *ngIf="stdemail.invalid && stdemail.touched">
+        <small *ngIf="stdemail.errors?.['required']">Email is required</small>
+        <!-- <small *ngIf="stdlname.errors?.['minlength']">minlength= {{stdlname.errors?.['requiredLength']}}</small> -->
+    </span>
+    <br>
+    <br>
+    <input type="number" #stdage="ngModel" ngModel="" name="age" placeholder="age" required min="10" max="30">
+    <span *ngIf="stdage.invalid && stdage.touched">
+        <small *ngIf="stdage.errors?.['required']">Age is required</small>
+        <small *ngIf="stdage.value>30" >Max Age is 30</small>
+        <small *ngIf="stdage.value<10" >min Age is 10</small>
+    </span>
+<br>
+<br>
+    <input type="submit" value="Add" [disabled]="stdForm.invalid">
+</form>

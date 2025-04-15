@@ -5,6 +5,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DepartmentsComponent } from './departments/departments.component';
 import { StudentEditComponent } from './_students/student-edit/student-edit.component';
 import path from 'path';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFromComponent } from './reactive-from/reactive-from.component';
 
 export const routes: Routes = [
 
@@ -26,20 +28,19 @@ export const routes: Routes = [
             }
         ]
     },
-    // { 
-    //     path: 'students/Details/:id', 
-    //     component: StudentDetailsComponent 
-    // },
-    // {
-    //     path: 'students/Edit/:id',
-    //     component: StudentEditComponent
-    // },
   
-    
-
+    {
+        path: 'Register',
+        component: RegisterComponent
+    },
+  
+    {
+        path:'Reactive',
+        component:ReactiveFromComponent
+    },
     {
         path: '', 
-        redirectTo: 'students', 
+        redirectTo: 'Reactive', 
         pathMatch: 'full'
     },
     {
